@@ -41,4 +41,4 @@ properties:
   NODE_PREFIX:
     value: "tidbcluster-"
   NODE_SUFFIX:
-    value: ".tidbcluster.arjun-cc-dev.svc.cluster.local"
+    value: ".tidbcluster-8-5.arjun-cc-dev.svc.cluster.local"
