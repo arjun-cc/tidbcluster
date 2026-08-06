@@ -1,0 +1,44 @@
+app:
+  name: tidbcluster
+  code: tidbcluster
+  notify: appzdev@cloudbourne.co
+
+build:
+  version: 8.5
+  env: DEV
+  build_file: none
+  output_files: output/*.zip
+  image_template: tidbcluster-8.5
+
+deploy:
+  context: arjun-cc/DEV
+  type: statefulset
+  replicas: 8
+  port:
+    - 2379    # PD client
+    - 2380    # PD peer
+    - 20160   # TiKV
+    - 20180   # TiKV status
+    - 4000    # TiDB SQL
+    - 10080   # TiDB status
+
+volumes:
+  - claim: tidbcluster-data
+    class: microk8s-hostpath
+    mount: /appz/data
+    name: data
+    size: 10Gi
+
+properties:
+  TIDB_ROOT_PASSWORD:
+    vault: TIDB_ROOT_PASSWORD_KEY
+  PD_REPLICAS:
+    value: "3"
+  TIKV_REPLICAS:
+    value: "3"
+  TIDB_REPLICAS:
+    value: "2"
+  NODE_PREFIX:
+    value: "tidbcluster-"
+  NODE_SUFFIX:
+    value: ".tidbcluster.arjun-cc-dev.svc.cluster.local"
