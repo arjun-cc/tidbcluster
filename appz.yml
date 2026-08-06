@@ -32,13 +32,16 @@ volumes:
 properties:
   TIDB_ROOT_PASSWORD:
     vault: TIDB_ROOT_PASSWORD_KEY
-  PD_REPLICAS:
-    value: "3"
-  TIKV_REPLICAS:
-    value: "3"
-  TIDB_REPLICAS:
-    value: "2"
-  NODE_PREFIX:
-    value: "tidbcluster-"
-  NODE_SUFFIX:
-    value: ".tidbcluster-8-5.arjun-cc-dev.svc.cluster.local"
+  PD_REPLICAS: 3
+  TIKV_REPLICAS: 3
+  TIDB_REPLICAS: 2
+  NODE_PREFIX: "tidbcluster-8-5-"
+  NODE_SUFFIX: ".tidbcluster-8-5.arjun-cc-dev.svc.cluster.local"
+  PD_CLIENT_PORT: 2379
+  PD_PEER_PORT: 2380
+  TIKV_PORT: 20160
+  TIKV_STATUS_PORT: 20180
+  TIDB_PORT: 4000
+  TIDB_STATUS_PORT: 10080
+
+  revision: 1
