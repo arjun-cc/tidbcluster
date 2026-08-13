@@ -44,4 +44,4 @@ properties:
   TIDB_PORT: 4000
   TIDB_STATUS_PORT: 10080
 
-  revision: 7
+  revision: 8
